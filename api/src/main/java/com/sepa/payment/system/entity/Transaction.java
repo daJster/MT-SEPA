@@ -3,6 +3,7 @@ package com.sepa.payment.system.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 
@@ -17,11 +18,15 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "fromUUID is mandatory")
-    private String fromAccUUID;
+    @NotNull(message = "fromAcc is mandatory")
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Account fromAcc;
 
-    @NotBlank(message = "toUUID is mandatory")
-    private String toAccUUID;
+    @NotNull(message = "toAcc is mandatory")
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Account toAcc;
 
     @Positive(message = "sent amount must be strictly positive")
     private long amount;

@@ -4,25 +4,23 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
 @Getter
+@Setter
 @Entity
 @Table
 public class Account {
 
     @Id
-    String uuid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @NotBlank(message = "account needs to have a full name.")
-    String fullName;
+    private String fullName;
 
     @PositiveOrZero(message = "balance should be only positive or zero.")
-    long balance;
-
-    @PrePersist
-    public void generateUUID() {
-        this.uuid = UUID.randomUUID().toString();
-    }
+    private long balance;
 }

@@ -2,6 +2,7 @@ package com.sepa.payment.system.service;
 
 import com.sepa.payment.system.entity.Operation;
 import com.sepa.payment.system.entity.Transaction;
+import com.sepa.payment.system.service.interfaces.TransactionService;
 import org.springframework.stereotype.Service;
 
 @Service

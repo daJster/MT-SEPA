@@ -17,20 +17,20 @@ public class TransactionController {
     public final TransactionServiceFactory transactionServiceFactory;
 
     @Autowired
-    public TransactionController() {
-        this.transactionServiceFactory = new TransactionServiceFactory();
+    public TransactionController(TransactionServiceFactory transactionServiceFactory) {
+        this.transactionServiceFactory = transactionServiceFactory;
     }
 
     // post transaction
     @PostMapping("/process/ST")
     public ResponseEntity<Boolean> processTransactionSingleThread(@Valid @RequestBody Transaction t) {
-        boolean respB = transactionServiceFactory.getST().ProcessTransaction(t);
-        return ResponseEntity.ok(respB);
+        boolean respBool = transactionServiceFactory.getST().ProcessTransaction(t);
+        return ResponseEntity.ok(respBool);
     }
 
     @PostMapping("/process/MT")
     public ResponseEntity<Boolean> processTransactionMultiThread(@Valid @RequestBody Transaction t) {
-        boolean respB = transactionServiceFactory.getMT().ProcessTransaction(t);
-        return ResponseEntity.ok(respB);
+        boolean respBool = transactionServiceFactory.getMT().ProcessTransaction(t);
+        return ResponseEntity.ok(respBool);
     }
 }

@@ -1,4 +1,4 @@
-package com.sepa.payment.system.service;
+package com.sepa.payment.system.service.interfaces;
 
 import com.sepa.payment.system.entity.Operation;
 import com.sepa.payment.system.entity.Transaction;
